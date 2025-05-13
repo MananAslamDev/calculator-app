@@ -10,26 +10,28 @@ function Calculator() {
     setInput(input + value);
   };
 
-  const handleClear = () => setInput("0");
+  const handleClear = () => setInput("");
 
   const handleCalculate = () => {
     try {
-      setInput( evaluate(input).toString());
+      setInput(evaluate(input).toString());
     } catch {
       setInput("Error");
     }
   };
 
   return (
-    <div className="calculator">
-      <input type="text" value={input} readOnly className="display" />
-      <div className="buttons">
-        {['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', 'C', '+'].map((char) => (
-          <button key={char} onClick={() => (char === "C" ? handleClear() : handleClick(char))}>
-            {char}
-          </button>
-        ))}
-        <button onClick={handleCalculate} className="Equal">=</button>
+    <div className="calculator-container">
+      <div className="calculator">
+        <input type="text" value={input} readOnly className="display" />
+        <div className="buttons">
+          {['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', 'C', '+'].map((char) => (
+            <button key={char} onClick={() => (char === "C" ? handleClear() : handleClick(char))}>
+              {char}
+            </button>
+          ))}
+          <button onClick={handleCalculate} className="Equal">=</button>
+        </div>
       </div>
     </div>
   );
